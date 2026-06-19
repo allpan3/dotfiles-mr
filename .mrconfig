@@ -5,15 +5,15 @@ jobs = 5
 checkout = vcsh clone git@github.com:allpan3/dotfiles-mr.git mr
 update = vcsh mr pull --ff-only
 push = vcsh mr push
-status = vcsh mr status -uno
-diff = vcsh mr diff
+status = vcsh mr -c color.status=always status -uno
+diff = vcsh mr -c color.ui=always diff --color=always
 
 [$HOME/.config/vcsh/repo.d/dot.git]
 checkout = vcsh clone git@github.com:allpan3/dotfiles.git dot
 update = vcsh dot pull --ff-only
 push = vcsh dot push
-status = vcsh dot status -uno
-diff = vcsh dot diff
+status = vcsh dot -c color.status=always status -uno
+diff = vcsh dot -c color.ui=always diff --color=always
 
 [$HOME/.config/vcsh/repo.d/local.git]
 checkout = 
@@ -21,13 +21,13 @@ checkout =
 	   vcsh clone -b "$branch" git@github.com:allpan3/dotfiles-local.git local
 update = vcsh local pull --ff-only
 push = vcsh local push
-status = vcsh local status -uno
-diff = vcsh local diff
+status = vcsh local -c color.status=always status -uno
+diff = vcsh local -c color.ui=always diff --color=always
 
 [$HOME/.config/nvim]
 checkout = git clone git@github.com:allpan3/nvim.git "$HOME/.config/nvim"
 update = git pull --ff-only
 push = git push
-status = git status -sb
-diff = git diff
+status = git -c color.status=always status
+diff = git -c color.ui=always diff --color=always
 
