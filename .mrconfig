@@ -9,7 +9,7 @@ status = vcsh mr -c color.status=always status -uno
 diff = vcsh mr -c color.ui=always diff --color=always
 
 [$HOME/.config/vcsh/repo.d/dot.git]
-checkout = vcsh clone git@github.com:allpan3/dotfiles.git dot
+checkout = vcsh clone git@github.com:allpan3/dotfiles-main.git dot
 update = vcsh dot pull --ff-only
 push = vcsh dot push
 status = vcsh dot -c color.status=always status -uno
