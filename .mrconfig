@@ -16,9 +16,20 @@ status = vcsh dot -c color.status=always status -uno
 diff = vcsh dot -c color.ui=always diff --color=always
 
 [$HOME/.config/vcsh/repo.d/local.git]
-checkout = 
-	   branch="${DOTFILES_BRANCH:-mac}"
-	   vcsh clone -b "$branch" git@github.com:allpan3/dotfiles-local.git local
+checkout =
+    set -eu
+    branch="${DOTFILES_BRANCH:?Set DOTFILES_BRANCH first}"
+    remote="git@github.com:allpan3/dotfiles-local.git"
+    if git ls-remote --exit-code --heads "$remote" "$branch" >/dev/null 2>&1; then
+        vcsh clone -b "$branch" "$remote" local
+    else
+        vcsh init local
+        vcsh local remote add origin "$remote"
+        vcsh local fetch origin || true
+        vcsh local switch --orphan "$branch" 2>/dev/null || vcsh local checkout --orphan "$branch"
+        vcsh local config status.showUntrackedFiles no
+        echo "Created empty dotfiles-local branch: $branch"
+    fi
 update = vcsh local pull --ff-only
 push = vcsh local push
 status = vcsh local -c color.status=always status -uno
