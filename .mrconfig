@@ -1,16 +1,19 @@
 [DEFAULT]
 jobs = 5
 
+[ALIAS]
+pull = update
+
 [$HOME/.config/vcsh/repo.d/mr.git]
 checkout = vcsh clone git@github.com:allpan3/dotfiles-mr.git mr
-update = vcsh mr pull --ff-only
+update = vcsh mr pull --ff-only --prune
 push = vcsh mr push
 status = vcsh mr -c color.status=always status -uno
 diff = vcsh mr -c color.ui=always diff --color=always
 
 [$HOME/.config/vcsh/repo.d/dot.git]
 checkout = vcsh clone git@github.com:allpan3/dotfiles-main.git dot
-update = vcsh dot pull --ff-only
+update = vcsh dot pull --ff-only --prune
 push = vcsh dot push
 status = vcsh dot -c color.status=always status -uno
 diff = vcsh dot -c color.ui=always diff --color=always
@@ -30,14 +33,14 @@ checkout =
         vcsh local config status.showUntrackedFiles no
         echo "Created empty dotfiles-local branch: $branch"
     fi
-update = vcsh local pull --ff-only
+update = vcsh local pull --ff-only --prune
 push = vcsh local push
 status = vcsh local -c color.status=always status -uno
 diff = vcsh local -c color.ui=always diff --color=always
 
 [$HOME/.config/nvim]
 checkout = git clone git@github.com:allpan3/nvim.git "$HOME/.config/nvim"
-update = git pull --ff-only
+update = git pull --ff-only --prune
 push = git push
 status = git -c color.status=always status
 diff = git -c color.ui=always diff --color=always
