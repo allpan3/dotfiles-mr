@@ -41,6 +41,14 @@ push = vcsh local push
 status = vcsh local -c color.status=always status -uno
 diff = vcsh local -c color.ui=always diff --color=always
 
+[$HOME/.config/vcsh/repo.d/ai.git]
+checkout = vcsh clone -b master git@github.com:allpan3/dotfiles-ai.git ai
+update = vcsh ai pull --ff-only --prune
+fetch = vcsh ai fetch --prune
+push = vcsh ai push
+status = vcsh ai -c color.status=always status -uno
+diff = vcsh ai -c color.ui=always diff --color=always
+
 [$HOME/.config/nvim]
 checkout = git clone git@github.com:allpan3/nvim.git "$HOME/.config/nvim"
 update = git pull --ff-only --prune
