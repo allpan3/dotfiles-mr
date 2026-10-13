@@ -20,6 +20,14 @@ push = vcsh dot push
 status = vcsh dot -c color.status=always status -uno
 diff = vcsh dot -c color.ui=always diff --color=always
 
+[$HOME/.config/vcsh/repo.d/ai.git]
+checkout = vcsh clone git@github.com:allpan3/dotfiles-ai.git ai && "$HOME/.agents/setup-agents.sh"
+update = vcsh ai pull --ff-only --prune && "$HOME/.agents/setup-agents.sh"
+fetch = vcsh ai fetch --prune
+push = vcsh ai push
+status = vcsh ai -c color.status=always status -uno
+diff = vcsh ai -c color.ui=always diff --color=always
+
 [$HOME/.config/vcsh/repo.d/local.git]
 checkout =
     set -eu
