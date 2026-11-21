@@ -394,6 +394,7 @@ def install(repo, home):
     storage = repo.dest.parent
     storage.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory(prefix=".dotfiles-install-", dir=storage) as temp:
+        print(f"  Temporary installation directory: {temp}", flush=True)
         env = {
             **GIT_ENV, "VCSH_BASE": str(home), "VCSH_REPO_D": temp,
             "XDG_CONFIG_HOME": str(home / ".config"), "VCSH_WORKTREE": "absolute",
@@ -417,6 +418,7 @@ def install(repo, home):
         if exists(repo.dest):
             raise InstallError(f"{repo.dest} appeared during installation.")
         metadata.rename(repo.dest)
+    print(f"Installed {repo.name} at {repo.dest}", flush=True)
 
 
 def main():
